@@ -1,7 +1,10 @@
-function App() {
+import { NavBar } from "./components/Navbar";
+import "./App.css";
+
+export function App() {
   return (
     <div className="App">
-      <p>Todo List</p>
+      <NavBar />
     </div>
   );
 }
