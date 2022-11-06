@@ -10,6 +10,7 @@ const theme = extendTheme({
       nav: "#f5f5f5",
       text: "#374151",
       text1: "#fff",
+      form: "#F8F9FA",
     },
   },
 });

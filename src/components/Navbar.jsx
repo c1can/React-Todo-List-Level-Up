@@ -26,7 +26,7 @@ export function NavBar() {
         justifyContent="space-between"
       >
         <Text fontSize="2xl" fontWeight="bold">
-          VargasTodo
+          TodoList
         </Text>
 
         <Stack direction={"row"} spacing="5" divider={<StackDivider />}>
