@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -27,6 +27,9 @@ export function NavBar() {
     setPath("/login");
   };
 
+  const {user} = useAuth()
+  const {displayName, email} = user;
+  
   return (
     <Box as="nav" bg={color} py={4} shadow="md">
       <Container
@@ -38,26 +41,26 @@ export function NavBar() {
           TodoList
         </Text>
 
-        <Stack direction={"row"} spacing="5" divider={<StackDivider />}>
+        <Stack direction={"row"} spacing="5" divider={<StackDivider />} >
           <Button onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
           <Menu>
-            <MenuButton as={Button} variant="link">
-              <Avatar size={"sm"} name="carlos" bg="pink" />
+            <MenuButton as={Button} variant="link" _hover={"none"} rightIcon={<ChevronDownIcon/>}>
+              <Avatar size={"sm"} name={displayName || email} bg="pink" />
             </MenuButton>
-            <MenuList>
+            <MenuList mt={5}>
               <Stack alignItems="center" divider={<StackDivider />} spacing="4">
-                <Box>
+                <Stack alignItems="center">
                   <Avatar
                     size={"xl"}
-                    name="carlosreyes@gmail.com"
+                    name={displayName || email}
                     bg={"pink"}
                   />
                   <Text fontWeight="bold" my={3}>
-                    Carlos Reyes
+                    {displayName || email}
                   </Text>
-                </Box>
+                </Stack>
 
                 <Button onClick={leaveSession}>Salir</Button>
               </Stack>

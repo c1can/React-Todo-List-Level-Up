@@ -66,7 +66,7 @@ export function Register() {
             onSubmit={handleSubmit}
           >
             <FormControl>
-              <FormLabel>Correo Electronico</FormLabel>
+              <FormLabel>Correo Electrónico</FormLabel>
               <Input
                 variant="filled"
                 type={"email"}
