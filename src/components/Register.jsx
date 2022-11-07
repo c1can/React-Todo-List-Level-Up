@@ -11,15 +11,18 @@ import {
 } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext/useAuth";
 import { useUser } from "../Hooks/useUser";
+import { RegisterAlert } from "./Alert";
 
 export function Register() {
   const color = useColorModeValue("main.text", "main.nav");
   const { user, setUser } = useUser();
   const { registerUser } = useAuth();
   const [path, setPath] = useLocation();
+  const [error, setError] = useState("")
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -36,8 +39,7 @@ export function Register() {
       await registerUser(email, password);
       setPath("/");
     } catch (error) {
-      console.log("gbgh");
-      console.log(error.code);
+      setError(error.code)
     }
   };
 
@@ -99,6 +101,8 @@ export function Register() {
             <Button variant={"link"} colorScheme="gray" mt={7}>
               <Link to="/login">Ya tienes una cuenta?</Link>
             </Button>
+
+            {error && <RegisterAlert error={error}/>}
           </Box>
         </Box>
       </Center>

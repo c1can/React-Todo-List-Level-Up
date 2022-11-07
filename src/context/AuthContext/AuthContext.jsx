@@ -16,8 +16,8 @@ export function AuthContextProvider({ children }) {
     });
   }, []);
 
-  const registerUser = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const registerUser = async(email, password) => {
+    await createUserWithEmailAndPassword(auth, email, password);
   };
   const loginUser = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
