@@ -13,10 +13,19 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useLocation } from "wouter";
+import { useAuth } from "../context/AuthContext/useAuth";
 
 export function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const color = useColorModeValue("main.nav", "gray.900");
+  const { signOutUser } = useAuth();
+  const [path, setPath] = useLocation();
+
+  const leaveSession = async () => {
+    await signOutUser();
+    setPath("/login");
+  };
 
   return (
     <Box as="nav" bg={color} py={4} shadow="md">
@@ -50,7 +59,7 @@ export function NavBar() {
                   </Text>
                 </Box>
 
-                <Button>Salir</Button>
+                <Button onClick={leaveSession}>Salir</Button>
               </Stack>
             </MenuList>
           </Menu>
