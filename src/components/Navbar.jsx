@@ -46,7 +46,7 @@ export function NavBar() {
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
           <Menu>
-            <MenuButton as={Button} variant="link" _hover={"none"} rightIcon={<ChevronDownIcon/>}>
+            <MenuButton as={Button} variant="link" _hover={{textDecoration: "none"}} rightIcon={<ChevronDownIcon/>}>
               <Avatar size={"sm"} name={displayName || email} bg="pink" />
             </MenuButton>
             <MenuList mt={5}>
