@@ -32,6 +32,8 @@ export function RegisterAlert({error}) {
                     ? <p>Ingresa un correo electronico</p>
                     : error === "auth/internal-error"
                     ? <p>No dejes campos en blanco</p>
+                    : error === "auth/invalid-email"
+                    ? <p>Contraseña invalida</p>
                     : <p>{error}</p>
                 }
             </Alert>

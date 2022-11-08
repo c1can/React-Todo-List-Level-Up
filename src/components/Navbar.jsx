@@ -47,7 +47,7 @@ export function NavBar() {
           </Button>
           <Menu>
             <MenuButton as={Button} variant="link" _hover={{textDecoration: "none"}} rightIcon={<ChevronDownIcon/>}>
-              <Avatar size={"sm"} name={displayName || email} bg="pink" />
+              <Avatar color="white" bg="teal.300" size={"sm"} name={displayName || email} />
             </MenuButton>
             <MenuList mt={5}>
               <Stack alignItems="center" divider={<StackDivider />} spacing="4">
@@ -55,7 +55,8 @@ export function NavBar() {
                   <Avatar
                     size={"xl"}
                     name={displayName || email}
-                    bg={"pink"}
+                    bg="teal.300"
+                    color="white"
                   />
                   <Text fontWeight="bold" my={3}>
                     {displayName || email}
