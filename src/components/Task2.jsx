@@ -1,36 +1,20 @@
-import {Checkbox, EditablePreview, Input, EditableInput, Editable, Box} from "@chakra-ui/react"
+import {Checkbox, EditablePreview, Input, EditableInput, Editable} from "@chakra-ui/react"
 import { EditableControls } from "./ButtonsTask"
 
 
 export function Task2({task, setTask}) {
 
     const handleChange = (id) => {
-        let checkStatus = task.map(item => { //[{status}, {status}]
-            if(item.id == id) {
-                return {
-                    ...item,
-                    status: !item.status
-                }
-            }else {
-                return item
-            }
+        const statusCheck = task.map(item => {
+            return item.id === id ? {...item, status: !item.status} : item
         })
-
-        setTask(checkStatus)
+        setTask(statusCheck)
     }
 
     const handleForm = (e, id) => {
-        const inputTitle = task.map(item => {
-            if(item.id === id) {
-                return {
-                    ...item,
-                    title: e
-                }
-            }else{
-                return item
-            }
+        const inputTitle = task.map(item => { 
+           return item.id === id ? {...item, title: e} : item
         })
-
         setTask(inputTitle)
     } 
 
