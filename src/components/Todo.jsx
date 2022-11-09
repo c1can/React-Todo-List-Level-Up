@@ -20,7 +20,6 @@ export function Todo() {
 
   const formRef = useRef(null)
 
-
   const getStorage= () => {
     const list = window.localStorage.getItem("task")
     
@@ -46,16 +45,26 @@ export function Todo() {
   }
 
   const handleClickIcon = (id) => {
-    console.log(id)
     const filtered = task.filter((a) => a.id !== id ) 
     setTask(filtered)
+  }
+
+  const handleChange = (id) => {  
+    let statusTask = task.map(item => {
+      if(item.id == id) {
+        return {...item,
+          status: !item.status
+        }
+      }else {
+        return item
+      }
+    })
+    setTask(statusTask)
   }
 
   useEffect(() => {
     window.localStorage.setItem("task", JSON.stringify(task))
   }, [task])
-
-  
 
   return (
     <>
@@ -77,11 +86,11 @@ export function Todo() {
 
           <Box maxH={"600px"} overflow={"scroll"} overflowX="hidden">
             {
-              task.map(({title, id}) => (
+              task.map(({title, id, status}) => (
                 <Box bg="main.form" p={5} borderRadius={"base"} key={id}>
                   <Flex justifyContent="space-between" alignItems={"center"}>
                     <Stack direction="row" gap={"2rem"}>
-                      <Checkbox size="lg" colorScheme="green"></Checkbox>
+                      <Checkbox isChecked={status} size="lg" colorScheme="green" onChange={() => handleChange(id)}></Checkbox>
                       <Text>{title}</Text>
                     </Stack>
                     <Stack direction={"row"}>

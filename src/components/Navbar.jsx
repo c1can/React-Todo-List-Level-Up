@@ -24,6 +24,7 @@ export function NavBar() {
 
   const leaveSession = async () => {
     await signOutUser();
+    window.localStorage.clear()
     setPath("/login");
   };
 
