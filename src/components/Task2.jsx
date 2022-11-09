@@ -19,13 +19,25 @@ export function Task2({task, setTask}) {
         setTask(checkStatus)
     }
 
-    const handleInput = () => {
-        e.preventDefault()
-        console.log("done")
+    const handleForm = (e, id) => {
+        const inputTitle = task.map(item => {
+            if(item.id === id) {
+                return {
+                    ...item,
+                    title: e
+                }
+            }else{
+                return item
+            }
+        })
+
+        setTask(inputTitle)
     } 
 
   return task.map(({title, id, status}) => (
-    <Editable
+        <Editable
+        key={id}
+        onSubmit={Event => handleForm(Event, id)}
         pos="relative"
         textAlign='center'
         defaultValue={title}
@@ -34,7 +46,6 @@ export function Task2({task, setTask}) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        key={id}
         py="1"
       >
       <Checkbox
