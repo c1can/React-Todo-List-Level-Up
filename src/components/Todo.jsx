@@ -12,6 +12,7 @@ import { useState, useRef, useEffect } from "react";
 import { useStorage } from "../Hooks/useStorage";
 import { NavBar } from "./Navbar"
 import { Task } from "./Task";
+import { Task2 } from "./Task2";
 
 export function Todo() {
   
@@ -45,7 +46,7 @@ export function Todo() {
           minH={"85vh"}
           pos="relative"
           overflow={"hidden"}
-        >
+          >
           <Box bg={"teal.200"} m="0" py={5} borderRadius="base">
             <Center>
               <Text color={"white"} fontSize="xl" fontWeight={"bold"}>
@@ -55,9 +56,7 @@ export function Todo() {
           </Box>
 
           <Box maxH={"600px"} overflow={"scroll"} overflowX="hidden">
-            
-            <Task task={task} setTask={setTask}/>
-            
+            <Task2 task={task} setTask={setTask}/>
           </Box>
 
           <Box as="form" pos={"absolute"} bottom="0" w={"97%"} onSubmit={handleSubmit} ref={formRef}>

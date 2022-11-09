@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Checkbox, Text, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Stack, Checkbox, Text, IconButton, useEditableControls } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 export function Task({ task, setTask }) {
@@ -9,7 +9,7 @@ export function Task({ task, setTask }) {
     }
 
     const handleChange = (id) => {  
-        let statusTask = task.map(item => {
+        let statusTask = task.map(item => { // ==> [{}, {status}, {}]
         if(item.id == id) {
             return {...item,
             status: !item.status
