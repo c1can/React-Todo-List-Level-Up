@@ -2,13 +2,13 @@
 
 [TodoList-React](https://www.frontendmentor.io/profile/escarcan)
 
-# Install Dependencies
+## Install Dependencies
 
-## npm install
+npm install
 
 ## Run the project on your localhost
 
-### npm run dev
+npm run dev
 
 ## Project Preview
 
