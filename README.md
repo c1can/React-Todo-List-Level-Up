@@ -2,7 +2,7 @@
 
 ## Live Site
 
-[TodoList-React](https://www.frontendmentor.io/profile/escarcan)
+[TodoList-React](https://todolist-react-levelup.netlify.app/)
 
 ## Install Dependencies
 
