@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
+import { useAuth } from "../context/AuthContext/useAuth";
 import { useStorage } from "../Hooks/useStorage";
 import { NavBar } from "./Navbar"
 import { Task2 } from "./Task2";
@@ -16,9 +17,11 @@ import { Task2 } from "./Task2";
 export function Todo() {
   
   const formRef = useRef(null)
+  const {user} = useAuth()
+  const {uid} = user
   const { getStorage } = useStorage("task")
 
-  const [task, setTask] = useState(getStorage())
+  const [task, setTask] = useState(getStorage()) //[]
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -27,6 +30,7 @@ export function Todo() {
       id: Date.now(),
       title: inputValue,
       status: false,
+      user: uid
     }
     formRef.current.reset()
     setTask(prev => prev.concat(myTask))
@@ -34,6 +38,7 @@ export function Todo() {
 
   useEffect(() => {
     window.localStorage.setItem("task", JSON.stringify(task))
+    console.log(task)
   }, [task])
 
   return (
@@ -55,7 +60,7 @@ export function Todo() {
           </Box>
 
           <Box maxH={"600px"} overflow={"scroll"} overflowX="hidden">
-            <Task2 task={task} setTask={setTask}/>
+            <Task2 task={task} setTask={setTask} user={uid}/>
           </Box>
 
           <Box as="form" pos={"absolute"} bottom="0" w={"100%"} onSubmit={handleSubmit} ref={formRef} left="0">

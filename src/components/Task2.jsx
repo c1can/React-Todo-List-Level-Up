@@ -2,7 +2,9 @@ import {Checkbox, EditablePreview, Input, EditableInput, Editable} from "@chakra
 import { EditableControls } from "./ButtonsTask"
 
 
-export function Task2({task, setTask}) {
+export function Task2({task, setTask, user}) {
+    
+    const filterArr = task.filter(item => item.user === user) 
 
     const handleChange = (id) => {
         const statusCheck = task.map(item => {
@@ -18,7 +20,7 @@ export function Task2({task, setTask}) {
         setTask(inputTitle)
     } 
 
-  return task.map(({title, id, status}) => (
+  return filterArr.map(({title, id, status}) => (
         <Editable
         key={id}
         onSubmit={Event => handleForm(Event, id)}
