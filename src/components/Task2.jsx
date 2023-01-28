@@ -1,4 +1,5 @@
 import {Checkbox, EditablePreview, Input, EditableInput, Editable} from "@chakra-ui/react"
+import { useTaskHandlers } from "../Hooks/useTask"
 import { EditableControls } from "./ButtonsTask"
 
 
@@ -6,24 +7,12 @@ export function Task2({task, setTask, user}) {
     
     const filterArr = task.filter(item => item.user === user) 
 
-    const handleChange = (id) => {
-        const statusCheck = task.map(item => {
-            return item.id === id ? {...item, status: !item.status} : item
-        })
-        setTask(statusCheck)
-    }
-
-    const handleForm = (e, id) => {
-        const inputTitle = task.map(item => { 
-           return item.id === id ? {...item, title: e} : item
-        })
-        setTask(inputTitle)
-    } 
+   const { handleInputValue, handleStatusCheck } = useTaskHandlers(task, setTask) 
 
   return filterArr.map(({title, id, status}) => (
         <Editable
         key={id}
-        onSubmit={Event => handleForm(Event, id)}
+        onSubmit={Event => handleInputValue(Event, id)}
         pos="relative"
         textAlign='center'
         defaultValue={title}
@@ -40,7 +29,7 @@ export function Task2({task, setTask, user}) {
       colorScheme="green"
       pos="absolute"
       left="2"
-      onChange={() => handleChange(id)}
+      onChange={() => handleStatusCheck(id)}
   ></Checkbox>
         <EditablePreview />
         <Input as={EditableInput} />
