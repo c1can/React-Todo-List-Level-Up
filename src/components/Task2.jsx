@@ -14,7 +14,6 @@ export function Task2({task, setTask, user}) {
         key={id}
         onSubmit={Event => handleInputValue(Event, id)}
         pos="relative"
-        textAlign='center'
         defaultValue={title}
         fontSize='lg'
         isPreviewFocusable={false}

@@ -17,11 +17,12 @@ import { Task2 } from "./Task2";
 export function Todo() {
   
   const formRef = useRef(null)
+  const container = useRef(null)
   const {user} = useAuth()
   const {uid} = user
   const { getStorage } = useStorage("task")
 
-  const [task, setTask] = useState(getStorage()) //[]
+  const [task, setTask] = useState(getStorage()) //[] || localStorage
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -38,7 +39,7 @@ export function Todo() {
 
   useEffect(() => {
     window.localStorage.setItem("task", JSON.stringify(task))
-    console.log(task)
+    container.current.scrollTo(0, container.current.scrollHeight)
   }, [task])
 
   return (
@@ -59,7 +60,7 @@ export function Todo() {
             </Center>
           </Box>
 
-          <Box maxH={"600px"} overflow={"scroll"} overflowX="hidden">
+          <Box ref={container} maxH={"600px"} overflow={"scroll"} overflowX="hidden">
             <Task2 task={task} setTask={setTask} user={uid}/>
           </Box>
 
